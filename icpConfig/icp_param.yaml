@@ -1,0 +1,60 @@
+matcher:
+  KDTreeMatcher:
+    knn: 10 #10
+    maxDist: 2  #2
+    epsilon: 1
+#   searchType: 1
+
+outlierFilters:
+#  - SemanticOutlierFilter:
+#  - VarTrimmedDistOutlierFilter:
+#     minRatio: 0.6
+#     maxRatio: 1.0
+#     lambda: 3
+  - TrimmedDistOutlierFilter:
+      ratio: 0.80
+#  - RobustOutlierFilter:
+#     tuning: 2
+#     robustFct: "cauchy"
+#     scaleEstimator: "mad"
+  - SurfaceNormalOutlierFilter:
+     maxAngle: 0.05
+
+errorMinimizer:
+   PointToPlaneErrorMinimizer:
+#       LiePenalty: 1
+#       priorCovariance: 0.25
+#       force2D: 0
+#       force4DOF: 1
+#       forceXYZOnly: 0
+#  PointToPlaneWithPenaltiesErrorMinimizer
+#        force2D: 0
+#        force4DOF: 1 
+#  PointToGaussianErrorMinimizer:
+#        noiseSensor: 0.02
+#        LiePenalty: 1
+#        priorCovariance: 0.5
+#        force2D: 0
+#        force4DOF: 0
+
+transformationCheckers:
+  - DifferentialTransformationChecker:
+      minDiffRotErr: 0.01
+      minDiffTransErr: 0.01
+      smoothLength: 3
+  - CounterTransformationChecker:
+      maxIterationCount: 30
+  - BoundTransformationChecker:
+      maxRotationNorm:   0.5 #0.1
+      maxTranslationNorm: 10 #0.5  #1.7
+
+inspector:
+#   VTKFileInspector:
+#      baseFileName : /home/maxime/debug_icp/vissteps
+#      dumpDataLinks : 1
+#      dumpReading : 1
+#      dumpReference : 1
+  NullInspector
+
+logger:
+  FileLogger

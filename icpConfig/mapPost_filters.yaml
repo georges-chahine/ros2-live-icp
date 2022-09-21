@@ -1,0 +1,47 @@
+#- RandomSamplingDataPointsFilter:
+#       prob: 0.9
+
+- SurfaceNormalDataPointsFilter:
+      knn: 15
+      epsilon: 0.5
+      keepNormals: 1
+      keepDensities: 1
+      keepEigenValues: 1
+      keepEigenVectors: 1
+      sortEigen: 1
+
+- MaxDensityDataPointsFilter:
+      maxDensity: 10000
+
+#- OctreeGridDataPointsFilter:
+#     maxSizeByNode: 0.01
+
+#- MaxDensityDataPointsFilter:
+#    maxDensity: 10000
+
+# - SurfaceNormalDataPointsFilter:
+#       knn: 15
+#       epsilon: 3.16
+#       keepNormals: 1
+#       keepDensities: 1
+
+# - SurfaceCovarianceDataPointsFilter:
+#     knn: 15
+#     epsilon: 3.16
+
+# - DecomposeCovarianceDataPointsFilter:
+#       keepNormals: 1
+
+
+#- SurfaceNormalDataPointsFilter:
+#    knn: 15
+
+- CutAtDescriptorThresholdDataPointsFilter:
+    descName: probabilityDynamic
+    useLargerThan: 1
+    threshold: 0.5
+
+- ObservationDirectionDataPointsFilter
+
+- OrientNormalsDataPointsFilter:
+      towardCenter: 1
